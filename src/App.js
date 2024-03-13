@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {useDispatch, useSelector} from "react-redux";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+
+const count = useSelector(state => state.counter)
+const dispatch = useDispatch()
+
+    const plus =() => {
+        dispatch({type:'ADD_COUNTER', payload:1})
+    }
+    const minus =() => {
+    if (count> 0){
+        dispatch({type:'GET_COUNTER', payload:1})
+    }
+    }
+    const tenAdd =() => {
+        dispatch({type:'ADD_COUNTER', payload:10})
+    }
+    const tenGet =() => {
+        dispatch({type:'GET_COUNTER', payload:10})
+    }
+    const clear = () => {
+        dispatch({type:"CLEAR_COUNTER"})
+    }
+
+    return (
+        <div>
+            <button onClick={() => tenAdd()}>+10</button>
+            <button onClick={() => plus()} >+</button>
+          <span>{count}</span>
+            <button onClick={() => minus()}>-</button>
+            <button onClick={() => tenGet()}>-10</button>
+            <button onClick={() => clear()} >clear</button>
+        </div>
+    );
+};
 
 export default App;
